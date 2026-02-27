@@ -1,0 +1,147 @@
+# PYQ Analysis — Subject: physic
+
+PYQ Filename: 2021 SPM Physics K2.pdf
+
+> This report uses saved lecture notes for retrieval (RAG).
+
+---
+
+## Q1 (Page None)
+
+State the type of heat involved from Q to R. Tick (✓) in the box for the correct answer.
+
+
+A. Heat capacity
+B. Latent heat
+
+
+Answer: Cannot determine
+Reason (1–2 lines): The question refers to points Q and R on a diagram, but no diagram or description of the process between these points (e.g., temperature change or phase change) is provided. Without this information, the type of heat cannot be determined.
+
+---
+
+## Q2 (Page None)
+
+Name the state of matter from Q to R.
+
+
+Final answer (1 line):
+The diagram or context defining Q and R, and relating them to states of matter, is missing.
+- step 1: The question asks to name the state of matter from Q to R.
+- step 2: The provided lecture note chunks cover topics such as kinematics, forces, momentum, gravity, magnetism, and nuclear physics. They do not contain information about the states of matter (solid, liquid, gas, plasma) or any reference to points Q and R in relation to them.
+- step 3: The "Diagram/Graph info extracted" explicitly states that no diagram details were extracted.
+- step 4: Without a diagram or additional context that defines what Q and R represent in the context of states of matter, it is impossible to answer the question.
+
+---
+
+## Q3 (Page None)
+
+Give one reason why the temperature is constant from Q to R.
+
+
+Final answer (1 line):
+The temperature is constant from Q to R because the substance is undergoing a phase change (e.g., melting or boiling), where the absorbed heat energy is used to break intermolecular forces rather than increase the kinetic energy of the particles.
+- step 1: Refer to the lecture notes on heat and specific latent heat.
+- step 2: According to [CHUNK 5], "Latent heat is defined as the thermal energy absorbed or released during constant temperature."
+- step 3: During a phase change (like melting from solid to liquid, or boiling from liquid to gas), the energy absorbed (latent heat) is used to change the state of the substance by breaking or forming intermolecular bonds.
+- step 4: This energy is not used to increase the average kinetic energy of the particles, which means the temperature remains constant during the process.
+
+---
+
+## Q4 (Page None)
+
+What happened to the heat energy during the cooling process from R to S?
+
+
+Final answer (1 line):
+The heat energy is released from the substance to the surroundings.
+- step 1: Referencing CHUNK 5, during a cooling process, the internal energy of the substance decreases.
+- step 2: This decrease in internal energy manifests as heat energy being transferred out of the substance.
+- step 3: If the cooling involves a decrease in temperature within a single phase, heat energy is released according to the specific heat capacity of the substance (Q = mcΔθ).
+- step 4: If the cooling involves a phase change at a constant temperature (e.g., from liquid to solid, or gas to liquid, as implied by "Do this in reverse from Boiling to freezing" in CHUNK 5), then latent heat is released by the substance.
+- step 5: In both scenarios of a cooling process, heat energy is transferred away from the substance and released into the surrounding environment.
+
+---
+
+## Q5 (Page None)
+
+What is the meaning of threshold frequency, f₀?
+
+
+Final answer (1 line):
+The threshold frequency (f₀) is the minimum frequency of the electromagnetic (EM) radiation that is needed to remove a photoelectron from the surface of a metal.
+- **Step 1:** Refer to the provided lecture notes for terms related to frequency and quantum physics.
+- **Step 2:** Locate [CHUNK 23] which discusses "Chapter 7 Quantum Physics" and specifically "7.2 Photoelectric Effect".
+- **Step 3:** Within this section, the definition for threshold frequency (f₀) is explicitly stated: "The threshold frequency (fo) is the minimum frequency of the EM radiation that is needed to remove a photoelectron from the surface of a metal."
+
+---
+
+## Q6 (Page None)
+
+Calculate the work function of metal zinc.
+
+
+Final answer (1 line):
+The work function of metal zinc cannot be calculated with the information provided, as specific values like the threshold frequency for zinc are missing.
+- step 1: The question asks for the work function of metal zinc.
+- step 2: From the lecture notes [CHUNK 23, CHUNK 24], the work function (Φ) is defined as the minimum energy required to release photoelectrons from a metal surface and is calculated using the formula Φ = hfo, where 'h' is Planck's constant and 'fo' is the threshold frequency of the metal.
+- step 3: To calculate the work function for zinc, its threshold frequency (fo) or other relevant experimental data (like kinetic energy of photoelectrons at a given frequency) would be required.
+- step 4: The provided lecture notes do not contain the threshold frequency or any specific data for metal zinc.
+- step 5: Therefore, without these specific values, the work function of metal zinc cannot be calculated.
+
+---
+
+## Q7 (Page None)
+
+The intensity of light that strikes the surface of zinc metal does not affect the kinetic energy of electron. Explain why.
+
+
+Final answer (1 line):
+The kinetic energy of an emitted electron depends on the frequency of the incident photon and the work function of the metal, not the intensity of the light, because each electron absorbs only one photon.
+- step 1: According to Einstein's photoelectric theory (hf = Φ + KE), the kinetic energy (KE) of a photoelectron is given by KE = hf - Φ, where 'h' is Planck's constant, 'f' is the frequency of the incident light, and 'Φ' is the work function of the metal.
+- step 2: This equation shows that the kinetic energy of the photoelectron is directly dependent on the frequency (f) of the incident light and the work function (Φ) of the metal.
+- step 3: The energy of a single photon is E = hf, which means it is determined by its frequency, not the intensity of the light.
+- step 4: In the photoelectric effect, each electron can only absorb one photon. Therefore, the kinetic energy gained by an electron is determined by the energy of that single photon it absorbs.
+- step 5: The intensity of light relates to the number of photons striking the metal surface per unit time. Increasing the intensity increases the number of photons, which leads to more electrons being emitted (increasing the photoelectric current), but it does not change the energy of individual photons, and thus does not affect the maximum kinetic energy of the individual emitted electrons.
+
+---
+
+## Q8 (Page None)
+
+Name the force that remains the rubber stopper in the circular path.
+
+
+Final answer (1 line):
+Centripetal force
+- step 1: The question asks for the force that keeps an object in a circular path.
+- step 2: From the lecture notes, [CHUNK 3] on "Man-made satellites" states that "The satellites must maintain a certain velocity to counteract the Earth's gravitational pull and maintain equilibrium with the centripetal force." This indicates that centripetal force is essential for maintaining an object in orbit or a circular path.
+- step 3: Therefore, the force that remains the rubber stopper in the circular path is the centripetal force. This force acts towards the center of the circular path.
+
+---
+
+## Q9 (Page None)
+
+mark the direction of force, F involved in 3(a)(i) in Diagram 3.
+
+
+Final answer (1 line): The force F is an attractive force, directed along the line connecting the centers of the two masses, towards the center of the other mass.
+- step 1: The question asks to mark the direction of force, F, in Diagram 3. However, Diagram 3 is not provided, so a physical marking cannot be performed.
+- step 2: Based on the question referring to "3(a)(i)" and the provided lecture note chunks, it is highly probable that the force F relates to Chapter 3: Gravitation, specifically Newton's Universal Law of Gravitation.
+- step 3: CHUNK 2 illustrates Newton's Universal Law of Gravitation with a diagram showing two masses (m1 and m2) and forces (F) acting on them. The arrows labeled 'F' are shown pointing towards each other.
+- step 4: This indicates that the gravitational force F is always an attractive force. Therefore, the force F on one mass would be directed towards the center of the other mass, along the line connecting their centers.
+
+---
+
+## Q10 (Page None)
+
+draw arrow to show the direction of linear speed, v of rubber stopper at position M in Diagram 3.
+
+
+Final answer (1 line):
+The diagram is missing, so I cannot draw the arrow showing the direction of linear speed, v, of the rubber stopper at position M.
+- step 1: Linear speed, or more precisely, linear velocity, is a vector quantity that describes both the speed and the direction of an object's motion.
+- step 2: The direction of linear velocity for an object moving along a path is always tangential to that path at any given point.
+- step 3: To draw an arrow representing the direction of linear speed at position M, the specific path of the rubber stopper (e.g., circular, straight line, curved) at that position in Diagram 3 is required.
+- step 4: As indicated by "(No diagram details extracted.)", Diagram 3 is not provided. Without this visual information, it is impossible to determine the tangent to the path at position M and, therefore, impossible to draw the correct arrow for the linear speed.
+
+---

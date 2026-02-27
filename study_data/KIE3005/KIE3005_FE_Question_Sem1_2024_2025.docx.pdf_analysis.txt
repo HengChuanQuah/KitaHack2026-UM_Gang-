@@ -1,0 +1,375 @@
+This document provides a comprehensive solution guide for the KIE3005_FE_Question_Sem1_2024_2025.pdf exam, aligning with typical concepts covered in an Engineering Statistics course.
+
+---
+
+### **Question 1: Probability Distributions** (20 Marks)
+
+**(a) A continuous random variable X has the following probability density function (PDF):**
+$f(x) = \begin{cases} cx(1-x) & 0 \le x \le 1 \\ 0 & \text{elsewhere} \end{cases}$
+
+**(i) Find the value of c.** (4 marks)
+
+**Concept:** For a valid Probability Density Function (PDF), the total area under the curve must integrate to 1.
+$\int_{-\infty}^{\infty} f(x) dx = 1$
+
+**Solution:**
+Since the PDF is non-zero only for $0 \le x \le 1$:
+$\int_0^1 cx(1-x) dx = 1$
+$c \int_0^1 (x - x^2) dx = 1$
+$c \left[ \frac{x^2}{2} - \frac{x^3}{3} \right]_0^1 = 1$
+$c \left[ \left(\frac{1^2}{2} - \frac{1^3}{3}\right) - \left(\frac{0^2}{2} - \frac{0^3}{3}\right) \right] = 1$
+$c \left[ \frac{1}{2} - \frac{1}{3} \right] = 1$
+$c \left[ \frac{3-2}{6} \right] = 1$
+$c \left[ \frac{1}{6} \right] = 1 \implies \boxed{c = 6}$
+
+**(ii) Find the cumulative distribution function (CDF), F(x).** (4 marks)
+
+**Concept:** The Cumulative Distribution Function (CDF), $F(x)$, is defined as $F(x) = P(X \le x) = \int_{-\infty}^{x} f(t) dt$.
+
+**Solution:**
+*   **For $x < 0$**: $F(x) = \int_{-\infty}^{x} 0 dt = \boxed{0}$
+*   **For $0 \le x \le 1$**:
+    $F(x) = \int_0^{x} 6t(1-t) dt$ (using $c=6$)
+    $F(x) = 6 \int_0^{x} (t - t^2) dt$
+    $F(x) = 6 \left[ \frac{t^2}{2} - \frac{t^3}{3} \right]_0^{x}$
+    $F(x) = 6 \left( \frac{x^2}{2} - \frac{x^3}{3} \right) = \boxed{3x^2 - 2x^3}$
+*   **For $x > 1$**: $F(x) = \int_0^{1} f(t) dt + \int_1^{x} 0 dt = 1 + 0 = \boxed{1}$
+
+**Combined CDF:**
+$F(x) = \begin{cases} 0 & x < 0 \\ 3x^2 - 2x^3 & 0 \le x \le 1 \\ 1 & x > 1 \end{cases}$
+
+**(iii) Calculate $P(0.2 < X < 0.8)$.** (3 marks)
+
+**Concept:** For a continuous random variable, $P(a < X < b) = F(b) - F(a)$.
+
+**Solution:**
+Using the CDF from (ii):
+$P(0.2 < X < 0.8) = F(0.8) - F(0.2)$
+$F(0.8) = 3(0.8)^2 - 2(0.8)^3 = 3(0.64) - 2(0.512) = 1.92 - 1.024 = 0.896$
+$F(0.2) = 3(0.2)^2 - 2(0.2)^3 = 3(0.04) - 2(0.008) = 0.12 - 0.016 = 0.104$
+$P(0.2 < X < 0.8) = 0.896 - 0.104 = \boxed{0.792}$
+
+**(iv) Find the expected value, E(X).** (3 marks)
+
+**Concept:** For a continuous random variable, $E(X) = \int_{-\infty}^{\infty} x f(x) dx$.
+
+**Solution:**
+$E(X) = \int_0^1 x \cdot 6x(1-x) dx = 6 \int_0^1 (x^2 - x^3) dx$
+$E(X) = 6 \left[ \frac{x^3}{3} - \frac{x^4}{4} \right]_0^1 = 6 \left[ \left(\frac{1}{3} - \frac{1}{4}\right) - (0) \right]$
+$E(X) = 6 \left[ \frac{4-3}{12} \right] = 6 \left[ \frac{1}{12} \right] = \boxed{0.5}$
+
+**(v) Find the variance, Var(X).** (3 marks)
+
+**Concept:** $Var(X) = E(X^2) - [E(X)]^2$. First, find $E(X^2) = \int_{-\infty}^{\infty} x^2 f(x) dx$.
+
+**Solution:**
+First, calculate $E(X^2)$:
+$E(X^2) = \int_0^1 x^2 \cdot 6x(1-x) dx = 6 \int_0^1 (x^3 - x^4) dx$
+$E(X^2) = 6 \left[ \frac{x^4}{4} - \frac{x^5}{5} \right]_0^1 = 6 \left[ \left(\frac{1}{4} - \frac{1}{5}\right) - (0) \right]$
+$E(X^2) = 6 \left[ \frac{5-4}{20} \right] = 6 \left[ \frac{1}{20} \right] = \frac{6}{20} = 0.3$
+
+Now, calculate $Var(X)$:
+$Var(X) = E(X^2) - [E(X)]^2 = 0.3 - (0.5)^2 = 0.3 - 0.25 = \boxed{0.05}$
+
+**(b) The probability that a student passes a particular examination is 0.8. A group of students take the examination one by one.**
+
+**(i) What is the probability that the 5th student taking the examination is the first one to pass?** (1 mark)
+
+**Concept:** This is a Geometric distribution where $p$ is the probability of success (passing). $P(X=x) = (1-p)^{x-1} p$.
+
+**Solution:**
+$p = 0.8$ (probability of passing), $q = 1-p = 0.2$ (probability of failing).
+$P(X=5) = q^{5-1} p = (0.2)^4 (0.8) = (0.0016)(0.8) = \boxed{0.00128}$
+
+**(ii) What is the probability that it takes more than 4 students for the first one to pass?** (1 mark)
+
+**Concept:** For a geometric distribution, $P(X > k) = (1-p)^k = q^k$.
+
+**Solution:**
+$P(X > 4) = q^4 = (0.2)^4 = \boxed{0.0016}$
+
+**(iii) What is the expected number of students needed to find the first one to pass?** (1 mark)
+
+**Concept:** For a geometric distribution, the expected value is $E(X) = 1/p$.
+
+**Solution:**
+$E(X) = 1/p = 1/0.8 = \boxed{1.25}$
+
+---
+
+### **Question 2: Sampling Distributions and Confidence Intervals** (20 Marks)
+
+**(a) A chemical solution has a mean pH of 8.0 with a standard deviation of 0.3. A random sample of 36 solutions is drawn from the population.**
+
+**(i) What is the probability that the sample mean pH is between 7.9 and 8.1?** (6 marks)
+
+**Concept:** Due to the Central Limit Theorem ($n=36 \ge 30$), the sampling distribution of the sample mean ($\bar{X}$) is approximately normal with mean $\mu_{\bar{x}} = \mu$ and standard deviation (standard error) $\sigma_{\bar{x}} = \sigma / \sqrt{n}$. We use Z-scores to find probabilities.
+
+**Solution:**
+Given: $\mu = 8.0$, $\sigma = 0.3$, $n = 36$.
+1.  **Calculate $\mu_{\bar{x}}$ and $\sigma_{\bar{x}}$:**
+    $\mu_{\bar{x}} = 8.0$
+    $\sigma_{\bar{x}} = 0.3 / \sqrt{36} = 0.3 / 6 = 0.05$
+
+2.  **Calculate Z-scores for 7.9 and 8.1:**
+    For $\bar{x}_1 = 7.9$: $Z_1 = \frac{7.9 - 8.0}{0.05} = \frac{-0.1}{0.05} = -2.00$
+    For $\bar{x}_2 = 8.1$: $Z_2 = \frac{8.1 - 8.0}{0.05} = \frac{0.1}{0.05} = 2.00$
+
+3.  **Find the probability:**
+    $P(7.9 < \bar{X} < 8.1) = P(-2.00 < Z < 2.00)$
+    Using Z-table: $P(Z < 2.00) = 0.9772$ and $P(Z < -2.00) = 0.0228$.
+    $P(-2.00 < Z < 2.00) = P(Z < 2.00) - P(Z < -2.00) = 0.9772 - 0.0228 = \boxed{0.9544}$
+
+**(ii) What is the probability that the sample mean pH is greater than 8.05?** (4 marks)
+
+**Concept:** Similar to (i), calculate the Z-score and find the tail probability.
+
+**Solution:**
+1.  **Calculate Z-score for 8.05:**
+    $Z = \frac{8.05 - 8.0}{0.05} = \frac{0.05}{0.05} = 1.00$
+
+2.  **Find the probability:**
+    $P(\bar{X} > 8.05) = P(Z > 1.00)$
+    Using Z-table: $P(Z < 1.00) = 0.8413$.
+    $P(Z > 1.00) = 1 - P(Z < 1.00) = 1 - 0.8413 = \boxed{0.1587}$
+
+**(b) A quality control engineer collected a sample of 15 batteries and measured their lifetimes. The sample mean lifetime was 500 hours, and the sample standard deviation was 25 hours. Construct a 95% confidence interval for the true mean lifetime of the batteries.** (10 marks)
+
+**Concept:** Since the population standard deviation ($\sigma$) is unknown and the sample size ($n=15$) is small ($n<30$), we use the t-distribution to construct the confidence interval for the population mean ($\mu$).
+Formula: $\bar{x} \pm t_{\alpha/2, df} \frac{s}{\sqrt{n}}$
+
+**Solution:**
+Given: $\bar{x} = 500$, $s = 25$, $n = 15$.
+1.  **Determine $\alpha$, $\alpha/2$, and $df$**:
+    Confidence level = 95% $\implies \alpha = 1 - 0.95 = 0.05$.
+    $\alpha/2 = 0.025$.
+    Degrees of freedom, $df = n - 1 = 15 - 1 = 14$.
+
+2.  **Find the critical t-value**:
+    From a t-distribution table with $df=14$ and $\alpha/2 = 0.025$, $t_{0.025, 14} = 2.145$.
+
+3.  **Calculate the margin of error (ME)**:
+    $ME = t_{\alpha/2, df} \frac{s}{\sqrt{n}} = 2.145 \times \frac{25}{\sqrt{15}}$
+    $ME = 2.145 \times \frac{25}{3.873} \approx 2.145 \times 6.455 \approx 13.84$
+
+4.  **Construct the confidence interval**:
+    Confidence Interval $= \bar{x} \pm ME = 500 \pm 13.84$
+    Lower bound $= 500 - 13.84 = 486.16$
+    Upper bound $= 500 + 13.84 = 513.84$
+
+**Answer:** A 95% confidence interval for the true mean lifetime of the batteries is $\boxed{(486.16 \text{ hours}, 513.84 \text{ hours})}$.
+**Interpretation:** We are 95% confident that the true mean lifetime of the batteries lies between 486.16 and 513.84 hours.
+
+---
+
+### **Question 3: Hypothesis Testing (One Sample)** (20 Marks)
+
+**(a) A machine is designed to fill bags with 1 kg of sugar. A random sample of 10 bags is taken, and their weights are measured (in kg):**
+**0.98, 1.01, 1.00, 0.99, 1.02, 0.97, 1.00, 1.03, 0.99, 1.01**
+**Test at the 5% significance level whether the machine is filling bags with 1 kg of sugar on average.** (12 marks)
+
+**Concept:** This is a one-sample t-test for the population mean ($\mu$) because the population standard deviation is unknown and the sample size ($n=10$) is small.
+
+**Solution:**
+1.  **State the Hypotheses:**
+    *   $H_0: \mu = 1.0$ kg (The machine is filling bags with 1 kg on average.)
+    *   $H_1: \mu \ne 1.0$ kg (The machine is not filling bags with 1 kg on average.)
+    This is a two-tailed test.
+
+2.  **Significance Level:** $\alpha = 0.05$.
+
+3.  **Calculate Sample Statistics:**
+    $n = 10$
+    Weights: 0.98, 1.01, 1.00, 0.99, 1.02, 0.97, 1.00, 1.03, 0.99, 1.01
+    *   $\Sigma x = 10.00$
+    *   $\bar{x} = \frac{10.00}{10} = 1.00$
+    *   $\Sigma x^2 = 0.9604 + 1.0201 + 1.0000 + 0.9801 + 1.0404 + 0.9409 + 1.0000 + 1.0609 + 0.9801 + 1.0201 = 10.003$
+    *   Sample variance $s^2 = \frac{\Sigma x^2 - (\Sigma x)^2/n}{n-1} = \frac{10.003 - (10.00)^2/10}{10-1} = \frac{10.003 - 10}{9} = \frac{0.003}{9} = 0.0003333$
+    *   Sample standard deviation $s = \sqrt{0.0003333} \approx 0.01826$
+
+4.  **Test Statistic:**
+    $t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{1.00 - 1.00}{0.01826/\sqrt{10}} = \frac{0}{0.01826/3.162} = \frac{0}{0.00577} = \boxed{0}$
+
+5.  **Critical Region:**
+    Degrees of freedom $df = n - 1 = 10 - 1 = 9$.
+    For a two-tailed test with $\alpha = 0.05$ and $df = 9$, the critical t-values are $\pm t_{\alpha/2, df} = \pm t_{0.025, 9}$.
+    From a t-table, $t_{0.025, 9} = 2.262$.
+    The critical region is $t < -2.262$ or $t > 2.262$.
+
+6.  **Decision:**
+    The calculated test statistic $t=0$ falls between $-2.262$ and $2.262$. It is not in the critical region. Therefore, we **fail to reject $H_0$**.
+
+7.  **Conclusion:**
+    At the 5% significance level, there is insufficient evidence to conclude that the machine is not filling bags with 1 kg of sugar on average. The data suggests the machine is operating as designed.
+
+**(b) Explain what Type I and Type II errors are in the context of the hypothesis test in part (a).** (8 marks)
+
+**Concept:**
+*   **Type I Error ($\alpha$)**: Rejecting the null hypothesis when it is true.
+*   **Type II Error ($\beta$)**: Failing to reject the null hypothesis when it is false.
+
+**Solution:**
+In the context of part (a):
+*   $H_0$: The machine is filling bags with 1 kg of sugar on average ($\mu = 1.0$ kg).
+*   $H_1$: The machine is not filling bags with 1 kg of sugar on average ($\mu \ne 1.0$ kg).
+
+*   **Type I Error (False Positive):**
+    *   **Explanation:** We conclude that the machine is *not* filling bags with 1 kg of sugar on average (reject $H_0$), when in reality, it *is* filling bags with 1 kg of sugar on average ($H_0$ is true).
+    *   **Consequence:** The company might unnecessarily stop the machine for recalibration or adjustment, leading to wasted time and money, despite the machine functioning correctly.
+
+*   **Type II Error (False Negative):**
+    *   **Explanation:** We conclude that the machine *is* filling bags with 1 kg of sugar on average (fail to reject $H_0$), when in reality, it *is not* filling bags with 1 kg of sugar on average ($H_0$ is false, e.g., it's consistently underfilling or overfilling).
+    *   **Consequence:** The company might continue to operate a faulty machine. This could result in customer dissatisfaction, product waste, regulatory fines, or damage to the brand's reputation due to incorrect product weights.
+
+---
+
+### **Question 4: Hypothesis Testing (Two Samples)** (20 Marks)
+
+**(a) A chemical company is testing two different catalysts, Catalyst A and Catalyst B, for a reaction. They conduct an experiment where Catalyst A is used in 12 batches, yielding an average reaction time of 8 hours with a standard deviation of 1.5 hours. Catalyst B is used in 10 batches, yielding an average reaction time of 7.5 hours with a standard deviation of 1.2 hours. Assuming the population variances are equal, test at the 1% significance level whether there is a significant difference in the average reaction times between the two catalysts.** (12 marks)
+
+**Concept:** This is a two-sample pooled t-test for the difference between two population means ($\mu_A - \mu_B$) because population standard deviations are unknown but assumed equal, and sample sizes are small.
+
+**Solution:**
+1.  **State the Hypotheses:**
+    *   $H_0: \mu_A = \mu_B$ (There is no significant difference in average reaction times.)
+    *   $H_1: \mu_A \ne \mu_B$ (There is a significant difference in average reaction times.)
+    This is a two-tailed test.
+
+2.  **Significance Level:** $\alpha = 0.01$.
+
+3.  **Sample Information:**
+    *   Catalyst A: $n_A = 12$, $\bar{x}_A = 8$, $s_A = 1.5$
+    *   Catalyst B: $n_B = 10$, $\bar{x}_B = 7.5$, $s_B = 1.2$
+
+4.  **Calculate Pooled Standard Deviation ($s_p$):**
+    $s_p^2 = \frac{(n_A - 1)s_A^2 + (n_B - 1)s_B^2}{n_A + n_B - 2}$
+    $s_p^2 = \frac{(12 - 1)(1.5)^2 + (10 - 1)(1.2)^2}{12 + 10 - 2} = \frac{11(2.25) + 9(1.44)}{20}$
+    $s_p^2 = \frac{24.75 + 12.96}{20} = \frac{37.71}{20} = 1.8855$
+    $s_p = \sqrt{1.8855} \approx 1.3731$
+
+5.  **Test Statistic:**
+    $t = \frac{(\bar{x}_A - \bar{x}_B) - (\mu_A - \mu_B)}{s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}}$ (Under $H_0$, $\mu_A - \mu_B = 0$)
+    $t = \frac{(8 - 7.5) - 0}{1.3731 \sqrt{\frac{1}{12} + \frac{1}{10}}} = \frac{0.5}{1.3731 \sqrt{0.08333 + 0.1}}$
+    $t = \frac{0.5}{1.3731 \sqrt{0.18333}} = \frac{0.5}{1.3731 \times 0.4282} = \frac{0.5}{0.5880} \approx \boxed{0.8503}$
+
+6.  **Critical Region:**
+    Degrees of freedom $df = n_A + n_B - 2 = 12 + 10 - 2 = 20$.
+    For a two-tailed test with $\alpha = 0.01$ and $df = 20$, the critical t-values are $\pm t_{\alpha/2, df} = \pm t_{0.005, 20}$.
+    From a t-table, $t_{0.005, 20} = 2.845$.
+    The critical region is $t < -2.845$ or $t > 2.845$.
+
+7.  **Decision:**
+    The calculated test statistic $t=0.8503$ falls between $-2.845$ and $2.845$. It is not in the critical region. Therefore, we **fail to reject $H_0$**.
+
+8.  **Conclusion:**
+    At the 1% significance level, there is not enough evidence to conclude that there is a significant difference in the average reaction times between Catalyst A and Catalyst B.
+
+**(b) Construct a 99% confidence interval for the difference in average reaction times between Catalyst A and Catalyst B.** (8 marks)
+
+**Concept:** The confidence interval for the difference between two population means (pooled t-interval) is given by:
+$(\bar{x}_A - \bar{x}_B) \pm t_{\alpha/2, df} s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}$
+
+**Solution:**
+Using values from part (a):
+$\bar{x}_A - \bar{x}_B = 8 - 7.5 = 0.5$
+$s_p = 1.3731$
+$n_A = 12$, $n_B = 10$
+$df = 20$
+For a 99% confidence interval, $\alpha = 0.01$, so $\alpha/2 = 0.005$.
+The critical t-value $t_{0.005, 20} = 2.845$.
+
+1.  **Calculate the margin of error (ME):**
+    $ME = 2.845 \times 1.3731 \times \sqrt{\frac{1}{12} + \frac{1}{10}}$
+    $ME = 2.845 \times 1.3731 \times 0.4282 \approx 2.845 \times 0.5880 \approx 1.6732$
+
+2.  **Construct the confidence interval:**
+    Confidence Interval $= (\bar{x}_A - \bar{x}_B) \pm ME = 0.5 \pm 1.6732$
+    Lower bound $= 0.5 - 1.6732 = -1.1732$
+    Upper bound $= 0.5 + 1.6732 = 2.1732$
+
+**Answer:** A 99% confidence interval for the difference in average reaction times is $\boxed{(-1.1732 \text{ hours}, 2.1732 \text{ hours})}$.
+**Interpretation:** Since the 99% confidence interval includes 0, this indicates that there is no statistically significant difference between the mean reaction times of Catalyst A and Catalyst B at the 1% significance level. This confirms the conclusion from the hypothesis test in part (a).
+
+---
+
+### **Question 5: Linear Regression** (20 Marks)
+
+**An engineer is studying the relationship between the temperature (X in °C) and the yield (Y in kg) of a certain chemical process. The following data was collected:**
+
+| Temperature (X) | Yield (Y) |
+| :-------------- | :-------- |
+| 20              | 15        |
+| 25              | 18        |
+| 30              | 22        |
+| 35              | 26        |
+| 40              | 29        |
+
+**(a) Compute the least squares regression line coefficients $b_0$ and $b_1$.** (8 marks)
+
+**Concept:** The least squares regression line is $\hat{y} = b_0 + b_1 x$.
+$b_1 = \frac{n \Sigma xy - (\Sigma x)(\Sigma y)}{n \Sigma x^2 - (\Sigma x)^2}$
+$b_0 = \bar{y} - b_1 \bar{x}$
+
+**Solution:**
+First, create a table to calculate the summations:
+| $X$ | $Y$ | $X^2$ | $Y^2$ | $XY$ |
+| :-- | :-- | :---- | :---- | :--- |
+| 20  | 15  | 400   | 225   | 300  |
+| 25  | 18  | 625   | 324   | 450  |
+| 30  | 22  | 900   | 484   | 660  |
+| 35  | 26  | 1225  | 676   | 910  |
+| 40  | 29  | 1600  | 841   | 1160 |
+| **$\Sigma X = 150$** | **$\Sigma Y = 110$** | **$\Sigma X^2 = 4750$** | **$\Sigma Y^2 = 2550$** | **$\Sigma XY = 3480$** |
+$n = 5$
+
+1.  **Calculate $b_1$:**
+    $b_1 = \frac{5(3480) - (150)(110)}{5(4750) - (150)^2} = \frac{17400 - 16500}{23750 - 22500} = \frac{900}{1250} = \boxed{0.72}$
+
+2.  **Calculate $b_0$:**
+    $\bar{x} = \frac{150}{5} = 30$
+    $\bar{y} = \frac{110}{5} = 22$
+    $b_0 = \bar{y} - b_1 \bar{x} = 22 - (0.72)(30) = 22 - 21.6 = \boxed{0.4}$
+
+**(b) Write down the least squares regression equation.** (2 marks)
+
+**Concept:** Substitute $b_0$ and $b_1$ into $\hat{y} = b_0 + b_1 x$.
+
+**Solution:**
+$\hat{y} = \boxed{0.4 + 0.72x}$
+
+**(c) Predict the yield when the temperature is 32°C.** (2 marks)
+
+**Concept:** Substitute the given X value into the regression equation.
+
+**Solution:**
+For $X = 32$:
+$\hat{y} = 0.4 + 0.72(32) = 0.4 + 23.04 = \boxed{23.44 \text{ kg}}$
+
+**(d) Interpret the meaning of the slope $b_1$ in the context of this problem.** (3 marks)
+
+**Concept:** The slope ($b_1$) represents the average change in the dependent variable (Y) for a one-unit increase in the independent variable (X).
+
+**Solution:**
+The slope $b_1 = 0.72$ means that for every 1°C increase in temperature, the predicted yield of the chemical process increases by **0.72 kg**.
+
+**(e) Calculate and interpret the coefficient of determination, $R^2$.** (5 marks)
+
+**Concept:** The coefficient of determination, $R^2$, measures the proportion of the total variation in the dependent variable (Y) that is explained by the independent variable (X) through the linear regression model. $R^2 = r^2$, where $r$ is the Pearson correlation coefficient.
+$r = \frac{n \Sigma xy - (\Sigma x)(\Sigma y)}{\sqrt{[n \Sigma x^2 - (\Sigma x)^2][n \Sigma y^2 - (\Sigma y)^2]}}$
+
+**Solution:**
+From part (a) calculations:
+$n \Sigma xy - (\Sigma x)(\Sigma y) = 900$
+$n \Sigma x^2 - (\Sigma x)^2 = 1250$
+$n \Sigma y^2 - (\Sigma y)^2 = 5(2550) - (110)^2 = 12750 - 12100 = 650$
+
+1.  **Calculate the correlation coefficient ($r$):**
+    $r = \frac{900}{\sqrt{(1250)(650)}} = \frac{900}{\sqrt{812500}} = \frac{900}{901.3878} \approx 0.99846$
+
+2.  **Calculate $R^2$:**
+    $R^2 = r^2 = (0.99846)^2 \approx \boxed{0.9969}$ (or 99.69%)
+
+3.  **Interpretation:**
+    An $R^2$ of 0.9969 means that approximately **99.69% of the total variation in the yield (Y) can be explained by the linear relationship with temperature (X)**. This indicates a very strong linear relationship and suggests that the regression model is an excellent fit for the data. The remaining 0.31% of the variation in yield is due to other factors not accounted for by temperature in this model or random error.
+
+---

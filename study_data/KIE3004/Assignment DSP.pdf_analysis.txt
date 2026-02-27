@@ -1,0 +1,412 @@
+This document provides a comprehensive solution guide for the questions found in the `Assignment DSP.pdf` (Past Year Exam) based on typical Digital Signal Processing (DSP) lecture notes.
+
+---
+**Assignment DSP.pdf - Solution Guide**
+
+**Question 1 (15 Marks)**
+A discrete-time system is described by the input-output relationship:
+y[n] = x[n] + n * x[n-1]
+
+**a) Determine if the system is linear. (5 Marks)**
+
+To check for linearity, we need to verify if the system satisfies the superposition principle (additivity and homogeneity).
+Let x1[n] -> y1[n] and x2[n] -> y2[n].
+y1[n] = x1[n] + n * x1[n-1]
+y2[n] = x2[n] + n * x2[n-1]
+
+Now, consider an input x[n] = a * x1[n] + b * x2[n], where 'a' and 'b' are arbitrary constants.
+The output y[n] for this input would be:
+y[n] = (a * x1[n] + b * x2[n]) + n * (a * x1[n-1] + b * x2[n-1])
+y[n] = a * x1[n] + b * x2[n] + n * a * x1[n-1] + n * b * x2[n-1]
+y[n] = a * (x1[n] + n * x1[n-1]) + b * (x2[n] + n * x2[n-1])
+y[n] = a * y1[n] + b * y2[n]
+
+Since the output for a weighted sum of inputs is the weighted sum of the individual outputs, the system is **linear**.
+
+**b) Determine if the system is time-invariant. (5 Marks)**
+
+To check for time-invariance, we need to see if a shift in the input causes an identical shift in the output.
+Let y[n] = T[x[n]] = x[n] + n * x[n-1].
+
+Now, consider a time-shifted input x_shift[n] = x[n-k] for some integer k.
+The output for this shifted input, let's call it y_new[n], is:
+y_new[n] = x_shift[n] + n * x_shift[n-1]
+y_new[n] = x[n-k] + n * x[n-k-1]
+
+Next, we compare this with the shifted version of the original output, y[n-k]:
+y[n-k] = (x[n-k]) + (n-k) * x[n-k-1]
+
+Comparing y_new[n] and y[n-k]:
+y_new[n] = x[n-k] + n * x[n-k-1]
+y[n-k] = x[n-k] + (n-k) * x[n-k-1]
+
+Since n * x[n-k-1] != (n-k) * x[n-k-1] (due to the `n` multiplying x[n-1]), we can conclude that y_new[n] != y[n-k].
+Therefore, the system is **not time-invariant**. The presence of 'n' (the independent variable) as a coefficient makes the system time-varying.
+
+**c) Determine if the system is causal. (2.5 Marks)**
+
+A system is causal if its output at any time 'n' depends only on the present input x[n] and/or past inputs x[n-k] (k > 0). It does not depend on future inputs.
+From the given equation:
+y[n] = x[n] + n * x[n-1]
+
+The output y[n] depends on:
+*   x[n] (present input)
+*   x[n-1] (past input)
+
+Since y[n] does not depend on any future inputs (e.g., x[n+1], x[n+2]), the system is **causal**.
+
+**d) Determine if the system is stable (BIBO stable). (2.5 Marks)**
+
+A system is BIBO (Bounded-Input, Bounded-Output) stable if every bounded input produces a bounded output.
+Let the input x[n] be bounded, meaning |x[n]| <= Bx for some finite constant Bx for all n.
+Then, |x[n-1]| <= Bx.
+
+Now let's look at the output y[n]:
+|y[n]| = |x[n] + n * x[n-1]|
+Using the triangle inequality:
+|y[n]| <= |x[n]| + |n * x[n-1]|
+|y[n]| <= |x[n]| + |n| * |x[n-1]|
+|y[n]| <= Bx + |n| * Bx
+|y[n]| <= Bx * (1 + |n|)
+
+As 'n' approaches infinity, the term (1 + |n|) also approaches infinity. This means that for a bounded input, the output |y[n]| can become unbounded because of the 'n' factor.
+For example, if x[n] = u[n] (a bounded input, Bx=1), then y[n] = u[n] + n * u[n-1]. As n increases, y[n] increases without bound (e.g., y[100] = 1 + 100 * 1 = 101).
+Therefore, the system is **not stable**.
+
+---
+
+**Question 2 (20 Marks)**
+Consider two discrete-time signals:
+h[n] = (1/2)^n u[n]
+x[n] = u[n]
+
+**a) Calculate the convolution y[n] = x[n] * h[n] using the convolution sum. (10 Marks)**
+
+The convolution sum is given by:
+y[n] = sum from k=-∞ to ∞ of x[k]h[n-k]
+
+Given:
+x[n] = u[n] = 1 for n >= 0, and 0 for n < 0
+h[n] = (1/2)^n u[n] = (1/2)^n for n >= 0, and 0 for n < 0
+
+Substitute x[k] and h[n-k] into the convolution sum:
+x[k] = u[k]
+h[n-k] = (1/2)^(n-k) u[n-k]
+
+The product x[k]h[n-k] = u[k] * (1/2)^(n-k) u[n-k] will be non-zero only when both u[k]=1 and u[n-k]=1.
+*   u[k]=1 implies k >= 0.
+*   u[n-k]=1 implies n-k >= 0, which means k <= n.
+
+So, the sum limits become from k=0 to k=n, provided n >= 0. If n < 0, the product is always zero, so y[n]=0 for n < 0.
+
+For n >= 0:
+y[n] = sum from k=0 to n of 1 * (1/2)^(n-k)
+y[n] = sum from k=0 to n of (1/2)^n * (1/2)^(-k)
+y[n] = (1/2)^n * sum from k=0 to n of (1/2)^(-k)
+y[n] = (1/2)^n * sum from k=0 to n of 2^k
+
+This is a geometric series sum: sum from k=0 to N of r^k = (r^(N+1) - 1) / (r - 1).
+Here, r = 2 and N = n.
+sum from k=0 to n of 2^k = (2^(n+1) - 1) / (2 - 1) = 2^(n+1) - 1
+
+Substitute this back into the expression for y[n]:
+y[n] = (1/2)^n * (2^(n+1) - 1)
+y[n] = (1/2)^n * 2^(n+1) - (1/2)^n * 1
+y[n] = (2^(-n)) * 2^(n+1) - (1/2)^n
+y[n] = 2^(-n + n + 1) - (1/2)^n
+y[n] = 2^1 - (1/2)^n
+y[n] = 2 - (1/2)^n
+
+Combining with the condition for n:
+y[n] = (2 - (1/2)^n) * u[n]
+
+**b) Find the Z-transform of h[n], denoted H(z), and state its Region of Convergence (ROC). (5 Marks)**
+
+Given h[n] = (1/2)^n u[n].
+This is a standard Z-transform pair of the form a^n u[n], where a = 1/2.
+The Z-transform of a^n u[n] is z / (z - a).
+So, H(z) = z / (z - 1/2).
+
+For a right-sided sequence a^n u[n], the ROC is |z| > |a|.
+Therefore, the ROC for H(z) is |z| > 1/2.
+
+**c) Find the Z-transform of x[n], denoted X(z), and state its Region of Convergence (ROC). (5 Marks)**
+
+Given x[n] = u[n].
+This is a standard Z-transform pair, which can be seen as a^n u[n] where a = 1.
+The Z-transform of u[n] is z / (z - 1).
+
+For a right-sided sequence u[n], the ROC is |z| > |1|.
+Therefore, the ROC for X(z) is |z| > 1.
+
+*(Self-check: For y[n] = x[n] * h[n], in the Z-domain Y(z) = X(z)H(z).
+Y(z) = [z / (z - 1)] * [z / (z - 1/2)]
+Y(z) = z^2 / ((z - 1)(z - 1/2))
+Using partial fraction expansion: Y(z)/z = z / ((z - 1)(z - 1/2)) = A/(z-1) + B/(z-1/2)
+A = 1 / (1 - 1/2) = 1 / (1/2) = 2
+B = (1/2) / (1/2 - 1) = (1/2) / (-1/2) = -1
+So, Y(z)/z = 2/(z-1) - 1/(z-1/2)
+Y(z) = 2z/(z-1) - z/(z-1/2)
+Taking inverse Z-transform: y[n] = 2u[n] - (1/2)^n u[n] = (2 - (1/2)^n)u[n]. This matches part (a).
+The ROC for Y(z) is the intersection of the ROCs of X(z) and H(z), which is (|z| > 1) ∩ (|z| > 1/2) = |z| > 1.)*
+
+---
+
+**Question 3 (25 Marks)**
+A causal LTI system is described by the difference equation:
+y[n] - (3/4)y[n-1] + (1/8)y[n-2] = x[n]
+
+**a) Find the system function H(z) for this system. (5 Marks)**
+
+To find the system function H(z), we take the Z-transform of both sides of the difference equation, assuming zero initial conditions and applying the time-shift property (x[n-k] <-> z^(-k)X(z)):
+
+Z{y[n]} - (3/4)Z{y[n-1]} + (1/8)Z{y[n-2]} = Z{x[n]}
+Y(z) - (3/4)z^(-1)Y(z) + (1/8)z^(-2)Y(z) = X(z)
+
+Factor out Y(z) on the left side:
+Y(z) [1 - (3/4)z^(-1) + (1/8)z^(-2)] = X(z)
+
+The system function H(z) is defined as H(z) = Y(z) / X(z):
+H(z) = 1 / [1 - (3/4)z^(-1) + (1/8)z^(-2)]
+
+To express H(z) with positive powers of z, multiply the numerator and denominator by z^2:
+H(z) = z^2 / [z^2 - (3/4)z + (1/8)]
+
+**b) Sketch the pole-zero plot for H(z) and indicate the Region of Convergence (ROC). (10 Marks)**
+
+First, find the poles and zeros of H(z).
+Zeros: The numerator is z^2. So there are two zeros at z = 0.
+Poles: The poles are the roots of the denominator polynomial: z^2 - (3/4)z + (1/8) = 0.
+Using the quadratic formula z = (-b ± sqrt(b^2 - 4ac)) / 2a:
+z = (3/4 ± sqrt((-3/4)^2 - 4 * 1 * (1/8))) / (2 * 1)
+z = (3/4 ± sqrt(9/16 - 4/8)) / 2
+z = (3/4 ± sqrt(9/16 - 8/16)) / 2
+z = (3/4 ± sqrt(1/16)) / 2
+z = (3/4 ± 1/4) / 2
+
+Two poles:
+p1 = (3/4 + 1/4) / 2 = (1) / 2 = 1/2
+p2 = (3/4 - 1/4) / 2 = (1/2) / 2 = 1/4
+
+So, H(z) has zeros at z=0 (multiplicity 2) and poles at z=1/2 and z=1/4.
+
+Now for the ROC:
+The problem states that the system is **causal**. For a causal system, the ROC is always the region outside the outermost pole.
+The poles are at |z|=1/2 and |z|=1/4. The outermost pole is at |z|=1/2.
+Therefore, the ROC is |z| > 1/2.
+
+**Pole-Zero Plot Sketch:**
+(Imagine a complex z-plane with real and imaginary axes)
+
+*   Draw the unit circle (radius 1 centered at the origin).
+*   Mark the origin (0,0) with two small circles ('o') to indicate the two zeros at z=0.
+*   Mark the point (1/4, 0) on the real axis with an 'x' for the pole at z=1/4.
+*   Mark the point (1/2, 0) on the real axis with an 'x' for the pole at z=1/2.
+*   Draw a dashed circle centered at the origin with a radius of 1/2. This represents the boundary of the ROC.
+*   Shade or indicate the region outside this circle (|z| > 1/2) as the ROC.
+
+```
+       Im(z)
+         ^
+         |      Unit Circle
+         |     /       \
+         |    |         |
+         o----x---x--.---> Re(z)
+   (-1,0)  (0,0) (1/4,0) (1/2,0) (1,0)
+         |    |         |
+         |     \       /
+         |      \-----/
+         |
+         V
+```
+(Above, 'o' at (0,0) for zeros, 'x' at (1/4,0) and (1/2,0) for poles. The ROC is the region outside the circle with radius 1/2, meaning |z| > 1/2.)
+
+**c) Determine the impulse response h[n] of the system. (10 Marks)**
+
+To find the impulse response h[n], we need to perform the inverse Z-transform of H(z).
+H(z) = 1 / [1 - (3/4)z^(-1) + (1/8)z^(-2)]
+First, factor the denominator:
+The denominator roots were 1/2 and 1/4. So, (1 - 1/2 z^(-1)) and (1 - 1/4 z^(-1)).
+H(z) = 1 / [(1 - 1/2 z^(-1))(1 - 1/4 z^(-1))]
+
+Now, use partial fraction expansion. Let H(z) = A / (1 - 1/2 z^(-1)) + B / (1 - 1/4 z^(-1)).
+To find A: Set (1 - 1/2 z^(-1)) to zero, so z^(-1) = 2.
+A = 1 / (1 - 1/4 * 2) = 1 / (1 - 1/2) = 1 / (1/2) = 2.
+
+To find B: Set (1 - 1/4 z^(-1)) to zero, so z^(-1) = 4.
+B = 1 / (1 - 1/2 * 4) = 1 / (1 - 2) = 1 / (-1) = -1.
+
+So, H(z) = 2 / (1 - 1/2 z^(-1)) - 1 / (1 - 1/4 z^(-1)).
+
+Now, we use the inverse Z-transform pair: 1 / (1 - a z^(-1)) <-> a^n u[n] for ROC |z| > |a|.
+Given that the system is causal, its ROC is |z| > 1/2. This ROC matches the form required for u[n] sequences.
+
+Therefore,
+h[n] = 2 * (1/2)^n u[n] - 1 * (1/4)^n u[n]
+h[n] = [2 * (1/2)^n - (1/4)^n] u[n]
+
+---
+
+**Question 4 (20 Marks)**
+Given a discrete-time signal x[n] = {1, 2, 3, 4} for n = 0, 1, 2, 3.
+
+**a) Calculate the 4-point Discrete Fourier Transform (DFT) X[k] of x[n]. (15 Marks)**
+
+The N-point DFT formula is:
+X[k] = sum from n=0 to N-1 of x[n] e^(-j2πkn/N) for k = 0, 1, ..., N-1.
+Here, N = 4 and x[n] = {1, 2, 3, 4}.
+
+Let W_N = e^(-j2π/N). So W_4 = e^(-j2π/4) = e^(-jπ/2).
+W_4^0 = 1
+W_4^1 = e^(-jπ/2) = -j
+W_4^2 = e^(-jπ) = -1
+W_4^3 = e^(-j3π/2) = j
+
+The DFT formula becomes:
+X[k] = sum from n=0 to 3 of x[n] W_4^(kn)
+
+**For k = 0:**
+X[0] = x[0]W_4^0 + x[1]W_4^0 + x[2]W_4^0 + x[3]W_4^0
+X[0] = 1 * 1 + 2 * 1 + 3 * 1 + 4 * 1
+X[0] = 1 + 2 + 3 + 4 = 10
+
+**For k = 1:**
+X[1] = x[0]W_4^0 + x[1]W_4^1 + x[2]W_4^2 + x[3]W_4^3
+X[1] = 1 * 1 + 2 * (-j) + 3 * (-1) + 4 * (j)
+X[1] = 1 - 2j - 3 + 4j
+X[1] = (1 - 3) + (-2 + 4)j
+X[1] = -2 + 2j
+
+**For k = 2:**
+X[2] = x[0]W_4^0 + x[1]W_4^2 + x[2]W_4^4 + x[3]W_4^6
+Note: W_4^4 = (W_4^2)^2 = (-1)^2 = 1. W_4^6 = W_4^(4+2) = W_4^4 * W_4^2 = 1 * (-1) = -1.
+X[2] = 1 * 1 + 2 * (-1) + 3 * (1) + 4 * (-1)
+X[2] = 1 - 2 + 3 - 4
+X[2] = -2
+
+**For k = 3:**
+X[3] = x[0]W_4^0 + x[1]W_4^3 + x[2]W_4^6 + x[3]W_4^9
+Note: W_4^6 = -1, W_4^9 = W_4^(8+1) = W_4^1 = -j.
+X[3] = 1 * 1 + 2 * (j) + 3 * (-1) + 4 * (-j)
+X[3] = 1 + 2j - 3 - 4j
+X[3] = (1 - 3) + (2 - 4)j
+X[3] = -2 - 2j
+
+The 4-point DFT of x[n] is X[k] = {10, -2 + 2j, -2, -2 - 2j}.
+
+**b) Sketch the magnitude spectrum |X[k]|. (5 Marks)**
+
+Calculate the magnitude for each X[k]:
+|X[k]| = sqrt(Re(X[k])^2 + Im(X[k])^2)
+
+|X[0]| = |10| = 10
+
+|X[1]| = |-2 + 2j| = sqrt((-2)^2 + (2)^2) = sqrt(4 + 4) = sqrt(8) ≈ 2.83
+
+|X[2]| = |-2| = 2
+
+|X[3]| = |-2 - 2j| = sqrt((-2)^2 + (-2)^2) = sqrt(4 + 4) = sqrt(8) ≈ 2.83
+
+The magnitude spectrum values are:
+|X[0]| = 10
+|X[1]| = sqrt(8)
+|X[2]| = 2
+|X[3]| = sqrt(8)
+
+**Sketch:**
+(Imagine a plot with k on the x-axis and |X[k]| on the y-axis)
+
+```
+  |X[k]|
+    ^
+ 10-|       *
+    |
+sqrt(8)-|   *           *
+    |
+  2-|           *
+    |
+  0 +-----------------------> k
+    0   1   2   3
+```
+
+(The sketch would show a bar graph or discrete points at k=0, 1, 2, 3 with corresponding magnitudes 10, sqrt(8), 2, sqrt(8).)
+
+---
+
+**Question 5 (20 Marks)**
+Design a causal FIR low-pass filter with a length of 7 using the Hamming window. The desired frequency response is:
+Hd(e^jω) = 1 for |ω| ≤ π/3
+Hd(e^jω) = 0 for π/3 < |ω| ≤ π
+
+**a) Determine the ideal impulse response hd[n] of the filter. (10 Marks)**
+
+The ideal impulse response hd[n] is the inverse DTFT of the desired frequency response Hd(e^jω).
+hd[n] = (1 / 2π) ∫ from -π to π of Hd(e^jω) e^(jωn) dω
+
+For a low-pass filter with cutoff frequency ωc = π/3, the integral becomes:
+hd[n] = (1 / 2π) ∫ from -π/3 to π/3 of 1 * e^(jωn) dω
+
+Evaluate the integral:
+hd[n] = (1 / 2π) [ (e^(jωn)) / (jn) ] from ω=-π/3 to ω=π/3 (for n != 0)
+hd[n] = (1 / (2πjn)) [ e^(jπn/3) - e^(-jπn/3) ]
+
+Using Euler's formula, sin(θ) = (e^(jθ) - e^(-jθ)) / (2j):
+hd[n] = (1 / (πn)) [ (e^(jπn/3) - e^(-jπn/3)) / (2j) ]
+hd[n] = (1 / (πn)) sin(πn/3) (for n != 0)
+
+For n = 0, we can use L'Hopital's rule or simply evaluate the integral directly:
+hd[0] = (1 / 2π) ∫ from -π/3 to π/3 of 1 dω
+hd[0] = (1 / 2π) [ω] from -π/3 to π/3
+hd[0] = (1 / 2π) [π/3 - (-π/3)]
+hd[0] = (1 / 2π) [2π/3]
+hd[0] = 1/3
+
+So, the ideal impulse response is:
+hd[n] = sin(πn/3) / (πn) for n != 0
+hd[0] = 1/3
+
+**b) Apply the Hamming window to find the filter coefficients h[n]. (10 Marks)**
+
+The filter length is M = 7. For FIR filter design using the window method, the ideal impulse response hd[n] (which is non-causal and infinite in length) needs to be truncated and shifted to make it finite and causal.
+The window function w[n] is defined for 0 ≤ n ≤ M-1.
+The impulse response h[n] is obtained by:
+h[n] = hd[n - (M-1)/2] * w[n] for 0 ≤ n ≤ M-1.
+Here, M = 7, so (M-1)/2 = (7-1)/2 = 3.
+So, h[n] = hd[n - 3] * w[n] for 0 ≤ n ≤ 6.
+
+The Hamming window function is given as:
+w[n] = 0.54 - 0.46 cos(2πn/(M-1)) for 0 ≤ n ≤ M-1.
+For M=7, w[n] = 0.54 - 0.46 cos(2πn/6) = 0.54 - 0.46 cos(πn/3) for 0 ≤ n ≤ 6.
+
+Let's calculate hd[n-3] for n = 0, 1, ..., 6:
+*   n=0: hd[0-3] = hd[-3] = sin(π(-3)/3) / (π(-3)) = sin(-π) / (-3π) = 0 / (-3π) = 0
+*   n=1: hd[1-3] = hd[-2] = sin(π(-2)/3) / (π(-2)) = sin(-2π/3) / (-2π) = (-sqrt(3)/2) / (-2π) = sqrt(3)/(4π) ≈ 0.1378
+*   n=2: hd[2-3] = hd[-1] = sin(π(-1)/3) / (π(-1)) = sin(-π/3) / (-π) = (-sqrt(3)/2) / (-π) = sqrt(3)/(2π) ≈ 0.2757
+*   n=3: hd[3-3] = hd[0] = 1/3 ≈ 0.3333
+*   n=4: hd[4-3] = hd[1] = sin(π/3) / (π) = (sqrt(3)/2) / (π) = sqrt(3)/(2π) ≈ 0.2757
+*   n=5: hd[5-3] = hd[2] = sin(2π/3) / (2π) = (sqrt(3)/2) / (2π) = sqrt(3)/(4π) ≈ 0.1378
+*   n=6: hd[6-3] = hd[3] = sin(π) / (3π) = 0 / (3π) = 0
+
+Now calculate w[n] for n = 0, 1, ..., 6:
+*   w[0] = 0.54 - 0.46 cos(0) = 0.54 - 0.46 * 1 = 0.08
+*   w[1] = 0.54 - 0.46 cos(π/3) = 0.54 - 0.46 * 0.5 = 0.54 - 0.23 = 0.31
+*   w[2] = 0.54 - 0.46 cos(2π/3) = 0.54 - 0.46 * (-0.5) = 0.54 + 0.23 = 0.77
+*   w[3] = 0.54 - 0.46 cos(π) = 0.54 - 0.46 * (-1) = 0.54 + 0.46 = 1.00
+*   w[4] = 0.54 - 0.46 cos(4π/3) = 0.54 - 0.46 * (-0.5) = 0.54 + 0.23 = 0.77
+*   w[5] = 0.54 - 0.46 cos(5π/3) = 0.54 - 0.46 * 0.5 = 0.54 - 0.23 = 0.31
+*   w[6] = 0.54 - 0.46 cos(2π) = 0.54 - 0.46 * 1 = 0.08
+
+Finally, calculate h[n] = hd[n-3] * w[n]:
+*   h[0] = hd[-3] * w[0] = 0 * 0.08 = 0
+*   h[1] = hd[-2] * w[1] = (sqrt(3)/(4π)) * 0.31 ≈ 0.1378 * 0.31 ≈ 0.0427
+*   h[2] = hd[-1] * w[2] = (sqrt(3)/(2π)) * 0.77 ≈ 0.2757 * 0.77 ≈ 0.2123
+*   h[3] = hd[0] * w[3] = (1/3) * 1.00 = 1/3 ≈ 0.3333
+*   h[4] = hd[1] * w[4] = (sqrt(3)/(2π)) * 0.77 ≈ 0.2757 * 0.77 ≈ 0.2123
+*   h[5] = hd[2] * w[5] = (sqrt(3)/(4π)) * 0.31 ≈ 0.1378 * 0.31 ≈ 0.0427
+*   h[6] = hd[3] * w[6] = 0 * 0.08 = 0
+
+The filter coefficients are:
+h = {0, 0.0427, 0.2123, 0.3333, 0.2123, 0.0427, 0}
+(Note: Due to symmetry and hd[n] being 0 at n=+-3, h[0] and h[6] are 0. The calculation hd[n-3] * w[n] correctly leads to this.)
+
+---

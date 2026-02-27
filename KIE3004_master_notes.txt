@@ -1,0 +1,272 @@
+
+
+--- Source: na final cheat sheet_250206_235636.pdf ---
+
+Extracted text placeholder...
+
+--- Source: NA assignment.pdf ---
+
+Extracted text placeholder...
+
+--- Source: NA assignment.pdf ---
+
+ 
+ 
+ 
+KIE3005 NUMERICAL ANALYSIS  
+ASSIGNMENT  
+ 
+ 
+ 
+ 
+OCC 2 
+YONG CHEE SHEAN   22117429  
+NOEL LIM KOK PING 22121658  
+ 
+ 
+ 
+ 
+PROFESOR MADYA IR. DR. JEEVAN A/L KANESAN  
+ 
+ 
+ 
+ELECTRICAL ENGINEERING DEPARTMENT  
+UNIVERSITY OF MALAY A 
+
+1 Introduction  
+Electrical circuits containing resistors, inductors, and capacitors , also known as RLC 
+circuits, play a crucial  role in many applications of engineerin g, particularly in signal 
+processing, power systems, and control engineering. The unsteady -state behaviour of 
+such circuits is controlled  by differential equations which is often unable to  be solved 
+analytically for real life engineering problems. As a result, numerical methods become 
+essential tools for analysing circuit responses over time.  
+This assignment focuses on the numerical solution of the unsteady -state current flow in 
+an RLC circuit driven by a 20 V  source is investigated, with parameters 𝐿 = 1 H, 𝐶 = 0.1 F, 
+and 𝑅1 = 𝑅2 = 5 Ω. The given circuit model leads to a second -order differential equation, 
+which is first transformed into a system of first -order differential equations. Numerical 
+techniques are then applied to solve the system subject to specified boundary conditions, 
+namely zero initial current at 𝑡=0s and an approximately steady-state current of 2 A at 
+𝑡=10s. 
+To achieve this, numerical integration methods are implemented using MATLAB, without 
+relying on built -in solvers, in order to strengthen understanding of the underlying 
+numerical algorithms. The shooting method is employed to estimate the unknown initial 
+conditions by iteratively adjusting them until the required boundary condition at the final 
+time is satisfied. Through this approach, the assignment demonstrates how numerical 
+analysis techniques can be effectively applied to solve boundary value problems a rising 
+from real -world electrical systems.  
+ 
+ 
+ 
+Figure 1 RLC Circuit  
+
+2 Show the first order differential equations that 
+represents the circuit shown in Figure 1.  
+ 
+Equation 1 Second order equation of Figure 1  
+𝑣𝑠
+𝑅1𝐶𝐿=𝑑2𝑖(𝑡)
+𝑑𝑡2+(𝑅2
+𝐿+1
+𝑅1𝐶)𝑑𝑖(𝑡)
+𝑑𝑡+(𝑅1+𝑅2
+𝑅1𝐶𝐿)𝑖(𝑡) 
+ 
+Given L = 1 H, R 1 = R2 =5 Ω, C = 0.1  F, and v s(t) = 20 V  
+ 
+20
+(5)(0.1)(1)=𝑑2𝑖(𝑡)
+𝑑𝑡2+(5
+1+1
+(5)(0.1))𝑑𝑖(𝑡)
+𝑑𝑡+(5+5
+(5)(0.1)(1))𝑖(𝑡) 
+40=𝑑2𝑖(𝑡)
+𝑑𝑡2+7𝑑𝑖(𝑡)
+𝑑𝑡+20𝑖(𝑡) 
+𝑑2𝑖(𝑡)
+𝑑𝑡2=−7𝑑𝑖(𝑡)
+𝑑𝑡−20𝑖(𝑡)+40 
+𝑥1=𝑖(𝑡) 
+𝑥2= 𝑑𝑖(𝑡)
+𝑑𝑡 
+𝑑𝑥1
+𝑑𝑡=𝑥2 
+𝑑𝑥2
+𝑑𝑡=−7𝑥2−20𝑥1+ 40 
+ 
+Explanation:  
+The given equation 𝑣𝑠
+𝑅1𝐶𝐿=𝑑2𝑖(𝑡)
+𝑑𝑡2+(𝑅2
+𝐿+1
+𝑅1𝐶)𝑑𝑖(𝑡)
+𝑑𝑡+(𝑅1+𝑅2
+𝑅1𝐶𝐿)𝑖(𝑡)  is a second -order 
+differential equation because the highest derivative in this equation is 𝑑2𝑖(𝑡)
+𝑑𝑡2  and the 
+unknown variable is the current 𝑖(𝑡). It is given L = 1 H, R 1 = R2 =5 Ω, C = 0.1  F, and v s(t) = 
+20 V. So, the first step is to substitute the given circuit values by replacing all the symbolic 
+parameters with their numerical values , which will produce an equation as such  
+20
+(5)(0.1)(1)=𝑑2𝑖(𝑡)
+𝑑𝑡2+(5
+1+1
+(5)(0.1))𝑑𝑖(𝑡)
+𝑑𝑡+(5+5
+(5)(0.1)(1))𝑖(𝑡) . This step converts a general 
+equation into a specific equation  that can accurately symbolize the given circuit. Second, 
+the numerical terms are simplified  to become 40=𝑑2𝑖(𝑡)
+𝑑𝑡2+7𝑑𝑖(𝑡)
+𝑑𝑡+20𝑖(𝑡) . Thus, the 
+equation is now a linear second  order differential equation with constant coefficients. 
+Next, the equation is converted from second order to first order  by defining state variables, 
+which are required for numerical methods.  Hence, the first state variable 𝑥1 is defined to 
+represent the current inside the circuit , while the second state variable 𝑥2 is defined to 
+represent the rate of change of current , resulting in the assumptions 𝑥1=𝑖(𝑡) and 𝑥2=
+ 𝑑𝑖(𝑡)
+𝑑𝑡. Together, they fully describe the system’s dynamic behavior. In conjunction to that, 
+since 𝑥1=𝑖(𝑡) and 𝑥2= 𝑑𝑖(𝑡)
+𝑑𝑡 , the first order differential equation can also be equated 
+as 𝑑𝑥1
+𝑑𝑡=𝑥2  showing that the derivative of the first state variable  is the second state 
+variable. Also, from the simplified second order equation 𝑑2𝑖(𝑡)
+𝑑𝑡2=−7𝑑𝑖(𝑡)
+𝑑𝑡−20𝑖(𝑡)+40, 
+the variables are interchangeable by replacing 𝑑2𝑖(𝑡)
+𝑑𝑡2  with 𝑑𝑥2
+𝑑𝑡 , 𝑑𝑖(𝑡)
+𝑑𝑡  with 𝑥2 , and 𝑖(𝑡)  with 
+𝑥1 . After replacing the variables, it produces the second first order equation  
+𝑑𝑥2
+𝑑𝑡=−7𝑥2−20𝑥1+ 40. Therefore, the resulting 2 first order equations are 𝑑𝑥1
+𝑑𝑡=𝑥2 and 
+𝑑𝑥2
+𝑑𝑡=−7𝑥2−20𝑥1+ 40. These equations together form the state space representation 
+of the RLC circuit , which is a suitable form to be then used in the shooting method . 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3 Assuming the current at initial time (t=0) is 0 A and 
+current reaches steady state approximately 2 A in the 
+circuit at final time of 10 s, develop the algorithm to 
+determine the initial value/s of first order equations 
+(at t=0 s) using MATLAB.  
+ 
+ 
+clc;clear;  
+ 
+%% Time settings  
+dt = 0.01;  
+t = 0:dt:10;  
+N = length(t);  
+ 
+%% Initial condition for current  
+x1_0 = 0;                 % i(0) = 0 A  
+ 
+%% Initial guess for di/dt  
+x2_0 = 1;                 % initial guess  
+tolerance = 0.01;         % acceptable error  
+error = 1;  
+ 
+%% Iterative shooting algorithm  
+while error > tolerance  
+ 
+    % Initialize state variables  
+    x1 = zeros(1, N);  
+    x2 = zeros(1, N);  
+ 
+    x1(1) = x1_0;  
+    x2(1) = x2_0;  
+ 
+    % Forward Euler integration  
+    for k = 1:N-1 
+        x1(k+1) = x1(k) + dt*x2(k);  
+        x2(k+1) = x2(k) + dt*(40 - 7*x2(k) - 20*x1(k));  
+    end 
+ 
+    % Compute error at final time  
+    error = abs(x1(end) - 2); 
+ 
+    % Adjust initial slope  
+    if x1(end) < 2  
+        x2_0 = x2_0 + 0.1;  
+    else 
+        x2_0 = x2_0 - 0.1; 
+    end 
+end 
+ 
+%% Display result  
+disp(['Estimated initial di/dt = ' , num2str(x2_0)]);  
+ 
+%% Plot result  
+plot(t, x1, 'LineWidth' , 2); 
+xlabel('Time (s)' ); 
+ylabel('Current (A)' ); 
+title('Numerical Solution of RLC Circuit Current' ); 
+grid on; 
+ 
+ 
+ 
+The MATLAB code presented above implements a numerical solution for the unsteady 
+state current flow of the RLC circuit using a technique known as the "Shooting Method." 
+This approach is necessitated by the nature of the problem, which is defined as a 
+boundary value problem rather than a standard initial value problem. While the initial 
+current at t=0 is explicitly given as 0 A, the initial rate of change of current (𝑑𝑖
+𝑑𝑡) is unknown. 
+Instead, the system is constrained by a final boundary condition where the current must 
+reach a steady state of approximately 2 A at t=10s. Consequently, the algorithm must 
+iteratively estimate the unknown initial slope until the simulation aligns with the required 
+final state.  
+The algorithm begins by defining the simulation parameters, establishing a time domain 
+from 0 to 10 seconds with a step size ( dt) of 0.01 seconds. This fine discretization is 
+essential to minimize cumulative errors during numerical integration. The state variables 
+are initialized with 𝑥1 (current) set to 0 A, satisfying the given initial condition. The second 
+state variable, 𝑥2(the derivative𝑑𝑖
+𝑑𝑡 ), is assigned an arbitrary initial guess of 1 . A while loop 
+is then employed to control the iterative process, continuing the simulation as long as the 
+error between the calculated final current and the target value of 2 A exceeds a specified 
+tolerance of 0.01.  
+Inside the loop, the algorithm utilizes the Forward Euler method to solve the system of 
+first-order differential equations derived in the previous section. Adhering to the 
+assignment constraint that prohibits the use of in -built functions, the integration is 
+performed manually within a for loop. The current 𝑥1is updated based on its derivative  𝑥2 , 
+
+while 𝑥2 is updated using the discretized form of the governing equation: 𝑥2𝑛𝑒𝑤=𝑥2𝑜𝑙𝑑+
+𝑑𝑡(40−7𝑥2𝑜𝑙𝑑−20𝑥1𝑜𝑙𝑑)  . This specific update rule directly reflects the circuit 
+parameters ( L=1H, R=5Ω, C=0.1F, 𝑉𝑠=20V) established in the circuit model.  
+Upon the completion of each 10 -second simulation cycle, the algorithm evaluates the 
+current at the final time step. If the calculated current is less than the target steady state 
+of 2 A, the logic implies that the initial "shot" (the guess for the rate of change) was too 
+low, and the initial guess x2_0 is incremented. Conversely, if the current exceeds the 
+target, the guess is decremented. This feedback loop effectively tunes the initial 
+condition until the boundary requirements are met.  Upon execution, the  algorithm 
+successfully determined that the required initial rate of change,  𝑑𝑖
+𝑑𝑡  at t=0, is 0.9A/s . Finally, 
+the code generates a plot of the current over time, visually confirming that the system 
+starts at 0 A and stabilizes at 2 A, thereby validating the numerical solution against the 
+physical expectations of the RLC circuit.  
+ 
+4 Conclusion  
+In conclusion, this report has successfully demonstrated the application of numerical 
+analysis techniques to solve the unsteady -state current behaviour  of an RLC circuit. By 
+reducing the governing second -order differential equation into a state -space 
+representation, the system was effectively modelled  for computational processing 
+without relying on in -built MATLAB solvers.  
+The implementation of the Shooting Method, utilizing a custom Forward Euler integration 
+algorithm, allowed for the accurate determination of the unknown initial condition , 
+specifically the rate of change of current (𝑑𝑖
+𝑑𝑡) at t = 0. The iterative algorithm successfully 
+converged, identifying the precise initial slope required for the system to transition from 
+an initial current of 0 A to the required steady -state value of 2 A.  
+The resulting simulation confirms the dynamic response of the circuit parameters ( L=1 H, 
+R=5Ω , C=0.1 F) to the 20V source, showing a clear transition from the transient state to 
+stability within the 10 -second interval. Ultimately, this study reinforces the importance 
+of numerical methods in electrical engineering, proving that fundamental algorithmic 
+logic can be used  to solve complex boundary value problems where analytical solutions 
+or standard initial value approaches are insufficient.  
+ 
+ 

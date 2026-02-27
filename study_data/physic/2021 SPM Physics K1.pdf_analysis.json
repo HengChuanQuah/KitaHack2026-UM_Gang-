@@ -1,0 +1,141 @@
+{
+  "subject": "physic",
+  "pyq_filename": "2021 SPM Physics K1.pdf",
+  "questions": [
+    {
+      "question_no": 1,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Which quantity is a base quantity?",
+      "type": "mcq",
+      "options": {
+        "A": "Power",
+        "B": "Energy",
+        "C": "Current",
+        "D": "Potential difference"
+      },
+      "answer": "Answer: C\nReason (1–2 lines): Electric current (Ampere) is one of the seven SI base quantities. Power, energy, and potential difference are derived quantities, as shown by their definitions in terms of other quantities."
+    },
+    {
+      "question_no": 2,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "The driver and passengers in a car are advised to wear seat belts. Seat belts prevent them from being thrown forward and hurting themselves. The purpose of wearing seat belts is to reduce the negative effect of",
+      "type": "mcq",
+      "options": {
+        "A": "force",
+        "B": "inertia",
+        "C": "mass",
+        "D": "weight"
+      },
+      "answer": "Answer: B\nReason (1–2 lines): Seat belts counteract inertia, which is the property of matter that resists any change in its motion, preventing passengers from continuing to move forward when a car suddenly stops. The lecture notes explicitly state that inertia plays a crucial role in vehicle safety, as seen in the design of seatbelts to protect occupants during sudden deceleration."
+    },
+    {
+      "question_no": 3,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Diagram 1(a) shows Abu drops a box off a cliff at a height of 15 m. If Abu does the same activity on the moon using the same box as shown in Diagram 1(b), which quantity will increase?",
+      "type": "subjective",
+      "options": {},
+      "answer": "Final answer (1 line):\nTime taken to fall\n- Step 1: Identify the key difference between dropping a box on Earth and on the Moon. The primary difference is the acceleration due to gravity (g). The acceleration due to gravity on the Moon (g_moon ≈ 1.62 m/s²) is significantly less than on Earth (g_earth ≈ 9.8 m/s²). The initial height (15 m) and the box (mass) remain the same.\n- Step 2: Consider the relevant kinematic equation for free fall from rest: h = ut + (1/2)gt², where h is the height, u is the initial velocity (0 for a dropped object), g is the acceleration due to gravity, and t is the time taken.\n- Step 3: Simplify the equation for an object dropped from rest: h = (1/2)gt². Rearranging to solve for time, we get t = sqrt(2h/g).\n- Step 4: Compare the time taken on the Moon versus Earth. Since the height (h) is the same, the time taken to fall is inversely proportional to the square root of the acceleration due to gravity (g).\n- Step 5: As g_moon < g_earth, the denominator (g) is smaller when the box is dropped on the Moon. A smaller denominator in the formula t = sqrt(2h/g) results in a larger value for t. Therefore, the time taken to fall will increase on the Moon compared to Earth."
+    },
+    {
+      "question_no": 4,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Mei Mei cycles from her house to school. On her way back from school, she stops at a grocery store behind her house. Diagram 2 shows a displacement-time graph of her journey. Which velocity-time graph describes the movement of Mei Mei?",
+      "type": "mcq",
+      "options": {
+        "A": "Velocity (m s⁻¹)",
+        "B": "Velocity (m s⁻¹)",
+        "C": "Velocity (m s⁻¹)",
+        "D": "Velocity (m s⁻¹)"
+      },
+      "answer": "Answer: C\nReason (1–2 lines): Velocity is the gradient of a displacement-time graph. Segment P shows a constant positive gradient (constant positive velocity). Segment Q shows a zero gradient (zero velocity). Segments R and S show a constant negative gradient, which appears to be the same magnitude, indicating a constant negative velocity for both segments."
+    },
+    {
+      "question_no": 5,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Diagram 3 shows a durian falls from a branch with a height of 5 m. What is the velocity of the durian just before it hits the ground?",
+      "type": "mcq",
+      "options": {
+        "A": "9.90 m s⁻¹",
+        "B": "10.15 m s⁻¹",
+        "C": "11.10 m s⁻¹",
+        "D": "13.94 m s⁻¹"
+      },
+      "answer": "Answer: A\nReason: Using the kinematic equation for freefall motion, v² = u² + 2gs, with initial velocity u=0 m/s, displacement s=5 m, and acceleration due to gravity g=9.8 m/s², the final velocity v is calculated as √(2 * 9.8 * 5) = √98 ≈ 9.90 m s⁻¹."
+    },
+    {
+      "question_no": 6,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Diagram 4 shows a rocket is taking off from the surface of the Earth. What is the factor that influences the escape velocity of the rocket so that it can take off from the surface of the Earth?",
+      "type": "mcq",
+      "options": {
+        "A": "Mass of the rocket",
+        "B": "Mass of the rocket and the Earth",
+        "C": "Distance of the object from the centre of the Earth",
+        "D": "Distance of the object from the surface of the Earth"
+      },
+      "answer": "Answer: C\nReason: The escape velocity formula, v_esc = √(2GM/R), shows that it is influenced by M (mass of the celestial body, Earth) and R (distance from the object's center to the surface, which is the Earth's radius when taking off from the surface). Option C correctly identifies R, the distance of the object from the centre of the Earth, as a factor."
+    },
+    {
+      "question_no": 7,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Which graph shows the correct relationship between gravitational acceleration, g to the distance, r from the centre of the Earth?",
+      "type": "mcq",
+      "options": {
+        "A": "g = GM/R²",
+        "B": "g = GM/R²",
+        "C": "g = GM/R²",
+        "D": "g = GM/R²"
+      },
+      "answer": "Answer: Cannot determine\nReason (1-2 lines): The question asks to identify the correct graph, but the actual graphs (A, B, C, D) are not provided in the input, only placeholder text options and a general description of axis labels."
+    },
+    {
+      "question_no": 8,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Which of the following is the characteristic of non-geostationary satellites?",
+      "type": "mcq",
+      "options": {
+        "A": "Direction of rotation is the same as direction of the Earth rotation",
+        "B": "Orbit period can be more or less than 24 hours",
+        "C": "Used to communicate throughout the whole world",
+        "D": "The position of satellite is above the same geographical location on the Earth surface"
+      },
+      "answer": "Answer: B\nReason (1–2 lines): Non-geostationary satellites have varied orbital periods, ranging from a few hours to several days, which means their orbit period can be more or less than 24 hours. They are also in constant motion relative to Earth's surface."
+    },
+    {
+      "question_no": 9,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "A long jump athlete with a mass of 54 kg has reached a distance from a take off point. What is the gravitational force between the athlete and the Earth? [Gravitational constant, G = 6.67 × 10⁻¹¹ Nm²kg⁻²] [Mass of the Earth = 5.97 × 10²⁴ kg] [Distance between center of the Earth and athlete, r = 6.37 × 10⁶ m]",
+      "type": "mcq",
+      "options": {
+        "A": "3.84 × 10⁻²⁷ N",
+        "B": "2.45 × 10⁻²⁰ N",
+        "C": "5.30 × 10² N",
+        "D": "5.38 × 10² N"
+      },
+      "answer": "Answer: C\nReason (1–2 lines): Using Newton's Universal Law of Gravitation, F = G * (m1 * m2) / r², with the given values, the gravitational force is calculated as (6.67 × 10⁻¹¹ Nm²kg⁻² * 54 kg * 5.97 × 10²⁴ kg) / (6.37 × 10⁶ m)² ≈ 530 N, which is 5.30 × 10² N."
+    },
+    {
+      "question_no": 10,
+      "page": null,
+      "source": "vision_onecall",
+      "question": "Diagram 5 shows a Y-shaped slingshot used by a student in an experiment to determine the value of 'F' of different mass of stones, m. The relationship of the variables in this experiment is given by: FD = mv² such that m = mass v = velocity of stone F = force of attraction D = extension distance Which statement is correct about this experiment?",
+      "type": "mcq",
+      "options": {
+        "A": "The gradient of graph F² against 1/m is equal to the value of F",
+        "B": "The velocity of stone increases as the mass of the stone increases",
+        "C": "The product of F and D is always constant for different mass of stones",
+        "D": "As F increases, D increases"
+      },
+      "answer": "Answer: D\nReason (1–2 lines): A slingshot operates based on elasticity, where the force applied (F) is directly proportional to the extension distance (D) of the elastic material, as described by Hooke's Law (F=kD). Therefore, as F increases, D increases."
+    }
+  ]
+}
